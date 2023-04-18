@@ -1,0 +1,69 @@
+<main class="product-container">
+    <aside class="sidebar">
+        <section>
+            <h2>Start Date:</h2>
+            <input [(ngModel)]="startDate" (change)="applyDateFilter()" id="startDate" type="date">
+            <h2>End Date:</h2>
+            <input [(ngModel)]="endDate" (change)="applyDateFilter()" id="endDate" type="date">
+        </section>
+        <!--         
+        <section>
+            <h2>Price:</h2>
+            <p>
+                Min : <input style="width: 40px;" type="number">
+                Max : <input style="width: 40px;" type="number">
+            </p>
+        </section> -->
+        <section>
+            <h2>Availability:</h2>
+            <p>
+                <input (change)="showInStockItems($event)" type="checkbox" id="inStock"> In stock
+            </p>
+            <p>
+                <input (change)="showOutOfStockItems($event)" type="checkbox" id="outOfStock"> Out of stock
+            </p>
+        </section>
+        <section style="display: flex; flex-wrap: wrap;" class="applied-filter-bubble">
+            <ng-container *ngIf="secondaryFilter.length > 0">
+                <span *ngFor="let filterItem of secondaryFilter; index as i">
+                    <span style="cursor: pointer;" (click)="removeFilterCondition(filterItem.filterType, i)">&#10005; </span>
+                    <ng-container *ngIf="filterItem.filterType == 'date'">Date : {{filterItem.startDate}} - {{filterItem.endDate}}</ng-container>
+                    <ng-container *ngIf="filterItem.filterType == 'inStock'">In Stock</ng-container>
+                    <ng-container *ngIf="filterItem.filterType == 'outOfStock'">Out of Stocks</ng-container>
+                </span>
+            </ng-container>
+        </section>
+    </aside>
+    <section class="products-table">
+        <table>
+            <tr class="title-row">
+                <th class="sequence-title"></th>
+                <th class="book-name-title">Book name</th>
+                <th class="author-name-title">Author Name</th>
+                <th class="book-price-title">Price</th>
+                <th class="available-copy-title">Availability</th>
+                <th class="published-date-title">Published date</th>
+            </tr>
+            <tr class="data-row" *ngFor="let bookItem of filteredData; index as i">
+                <td class="sequence-content">
+                    {{i+1}}
+                </td>
+                <td class="book-name-content">
+                    {{bookItem.book_name}}
+                </td>
+                <td class="author-name-content">
+                    {{bookItem.author}}
+                </td>
+                <td class="book-price-content">
+                    $ {{bookItem.price}}
+                </td>
+                <td class="available-copy-content">
+                    $ {{bookItem.availability === 'available' ? "Available" : "Not available"}}
+                </td>
+                <td class="published-date-content">
+                    {{bookItem.published_date}}
+                </td>
+            </tr>
+        </table>
+    </section>
+</main>

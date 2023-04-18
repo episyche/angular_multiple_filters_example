@@ -1,0 +1,29 @@
+.product-container{
+    display: flex;
+    width: 1300px;
+    margin: 0px auto;
+    margin-top: 130px;
+}
+.sidebar{
+    width: 20%;
+}
+.products-table{
+    width: 80%;
+}
+.products-table table{
+    width: 100%;
+}
+.products-table table th{
+    text-align: left;
+    font-size: 20px;
+    font-weight: 600;
+}
+.data-row{
+    background-color: antiquewhite;
+    padding: 10px 5px;
+}
+.applied-filter-bubble > span{
+    background-color: #dedede;
+    padding: 5px 8px;
+    margin: 5px;
+}
